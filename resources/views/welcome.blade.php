@@ -62,41 +62,34 @@
                 margin-bottom: 30px;
             }
         </style>
+        <style>
+            #app {
+                font-family: 'Avenir', Helvetica, Arial, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-align: center;
+                color: #2c3e50;
+            }
+
+            #nav {
+                padding: 30px;
+            }
+
+            #nav a {
+                font-weight: bold;
+                color: #2c3e50;
+            }
+
+            #nav a.router-link-exact-active {
+                color: #42b983;
+            }
+        </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-                <div id="app">
-                    <example-component></example-component>
-                </div>
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-
-
+                <div id="app"></div>
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
