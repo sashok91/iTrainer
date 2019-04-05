@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <v-app>
+      <v-content>
+        <v-container>Hello world</v-container>
+      </v-content>
+
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
@@ -7,6 +12,7 @@
       <router-link to="/search">Search</router-link>
     </div>
     <router-view/>
+    </v-app>
   </div>
 </template>
 
