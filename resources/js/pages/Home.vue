@@ -1,18 +1,22 @@
 <template>
   <div class="home">
+    <v-layout align-center row>
+      <v-toolbar>
+        <v-btn>rrrr</v-btn>
+      </v-toolbar>
+    </v-layout>
 
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '../components/HelloWorld.vue';
+import LoginForm from '../components/LoginForm.vue';
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
+    LoginForm,
   },
 };
 </script>
