@@ -24,7 +24,7 @@ class AuthController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users',
-            'password' => 'required|between:6,25|confirm'
+            'password' => 'required|between:6,25|confirmed'
         ]);
 
         $user = new User($request->all());
@@ -43,7 +43,7 @@ class AuthController extends Controller
             'password' => 'required|between:6,25'
         ]);
 
-        $user = User::whereEmail($request->emai)->first();
+        $user = User::whereEmail($request->email)->first();
 
         if ($user && Hash::check($request->password, $user->password)){
             $user->api_token = Str::random(60);
@@ -51,7 +51,8 @@ class AuthController extends Controller
 
             return response()->json([
                 'success' => true,
-                'api_tken' => $user->api_tken,
+                'user_id' => $user->id,
+                'api_token' => $user->api_token,
                 'name' => $user->name
             ]);
         }
@@ -59,8 +60,8 @@ class AuthController extends Controller
         return response()->json([
             'errors' => [
                 'email' => 'Incorrect credentials'
-            ], 422
-        ]);
+            ]
+        ], 422);
     }
 
     public function logout(Request $request)

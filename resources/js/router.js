@@ -7,24 +7,41 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {
-            path: '/',
-            name: 'home',
-            component: Home,
+            path: '/login',
+            name: 'login',
+            component: () => import('./pages/auth/Login.vue'),
         },
         {
-            path: '/about',
-            name: 'about',
-            component: () => import('./pages/About.vue'),
+            path: '/registration',
+            name: 'registration',
+            component: () => import('./pages/auth/Registration.vue')
         },
         {
-            path: '/mathtrainer',
-            name: 'mathtrainer',
-            component: () => import('./pages/MathTrainer.vue'),
-        },
-        {
-            path: '/search',
-            name: 'search',
-            component: () => import('./pages/Search.vue'),
-        },
+            path: '/app',
+            component: () => import('./layouts/BaseApp.vue'),
+            children: [
+                {
+                    path: '/',
+                    name: 'home',
+                    component: Home,
+                },
+                {
+                    path: 'about',
+                    name: 'about',
+                    component: () => import('./pages/About.vue'),
+                },
+                {
+                    path: '/mathtrainer',
+                    name: 'mathtrainer',
+                    component: () => import('./pages/MathTrainer.vue'),
+                },
+                {
+                    path: '/search',
+                    name: 'search',
+                    component: () => import('./pages/Search.vue'),
+                },
+            ]
+        }
+
     ],
 });
