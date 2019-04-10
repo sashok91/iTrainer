@@ -31,6 +31,8 @@
 </template>
 
 <script>
+    import utils from '../helpers/utils';
+
     export default {
         name: "LoginForm",
         data() {
@@ -46,10 +48,15 @@
             onLogin() {
                 this.error = {};
                 let router = this.$router;
+                let store = this.$store;
 
                 axios.post('/api/login', this.form)
                     .then(response => {
-                        router.push({name: 'home',});
+                        if (response.data.success) {
+                            store.dispatch('user/updateUserInfo', response.data);
+                            let routeName = utils.getRouteNameBeforeAuth();
+                            router.push({name: routeName,});
+                        }
                     })
                     .catch(error => {
                         this.errors = error.response.data.errors;

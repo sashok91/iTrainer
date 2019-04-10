@@ -1,7 +1,9 @@
 <template>
     <div class="side-nav">
         <v-navigation-drawer v-model="drawer" app dark class="indigo">
+
             <v-list>
+
                 <v-list-tile v-for="item in navList" :to="item.route" :key="item.text">
                     <v-list-tile-action>
                         <v-icon class="white--text">{{item.icon}}</v-icon>
@@ -22,20 +24,12 @@
 
     export default {
         name: "SideNavigation",
-        data() {
-            return {
-                userInfo: {
-                    isLogin: true,
-                    user_role: 'admin'
-                },
-            }
-        },
         computed: {
             ...mapState({
                 baseNav: storeState => storeState.nav.baseNav,
                 userNav: storeState => storeState.nav.userNav,
                 adminNav: storeState => storeState.nav.adminNav,
-
+                userInfo: storeState => storeState.user.auth,
             }),
             drawer: {
                 get() {
@@ -50,9 +44,9 @@
             navList() {
                 let res = this.baseNav;
 
-                if (this.userInfo.isLogin && this.userInfo.user_role === 'admin') {
+                if (this.userInfo.isLoggedin && this.userInfo.role === 'admin') {
                     res = this.adminNav;
-                } else if (this.userInfo.isLogin) {
+                } else if (this.userInfo.isLoggedin) {
                     res = this.userNav;
                 }
 

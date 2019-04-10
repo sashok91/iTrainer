@@ -1,5 +1,5 @@
 export default {
-    getRouteBeforeAuth() {
+    getRouteNameBeforeAuth() {
         let routeName = 'home';
         return routeName;
     },

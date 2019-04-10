@@ -35,7 +35,7 @@
         },
         methods: {
             onBack(){
-                let routeName = utils.getRouteBeforeAuth();
+                let routeName = utils.getRouteNameBeforeAuth();
                 this.$router.push({name: routeName});
             }
         }

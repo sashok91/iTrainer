@@ -12,8 +12,13 @@ import 'vuetify/dist/vuetify.min.css';
 
 Vue.config.productionTip = false;
 
-const app = new Vue({
+window.app = new Vue({
     router,
     store,
     render: h => h(App),
+    mounted() {
+        this.$store.dispatch('user/updateUserInfo');
+    }
 }).$mount('#app');
+
+

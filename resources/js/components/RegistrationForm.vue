@@ -66,7 +66,7 @@
                 axios.post('/api/register', this.form)
                     .then(response => {
                         if (response.data.success) {
-                            router.push('login');
+                            router.push({name: 'login'});
                         }
                     })
                     .catch(error => {
