@@ -26,9 +26,6 @@
         name: "SideNavigation",
         computed: {
             ...mapState({
-                baseNav: storeState => storeState.nav.baseNav,
-                userNav: storeState => storeState.nav.userNav,
-                adminNav: storeState => storeState.nav.adminNav,
                 userInfo: storeState => storeState.user.auth,
             }),
             drawer: {
@@ -42,12 +39,14 @@
                 }
             },
             navList() {
-                let res = this.baseNav;
+                let res;
 
                 if (this.userInfo.isLoggedin && this.userInfo.role === 'admin') {
-                    res = this.adminNav;
+                    res = this.$store.state.nav.adminNav;
                 } else if (this.userInfo.isLoggedin) {
-                    res = this.userNav;
+                    res = this.$store.state.nav.userNav;
+                } else {
+                    res = this.$store.state.nav.baseNav;
                 }
 
                 return res;

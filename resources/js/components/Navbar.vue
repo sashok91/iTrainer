@@ -16,7 +16,7 @@
                 <v-btn class="grey--text text--darken-2" flat to="/registration">Sign Up</v-btn>
             </v-toolbar-items>
 
-            <v-btn flat class="grey--text text--darken-2">
+            <v-btn flat @click="onLogoutClick" class="grey--text text--darken-2">
                 <span>Log out</span>
                 <v-icon right>exit_to_app</v-icon>
             </v-btn>
@@ -39,6 +39,23 @@
             toggleSidebar() {
                 let drawer = !this.$store.state.nav.drawer;
                 this.$store.commit('nav/drawer', drawer);
+            },
+
+            onLogoutClick() {
+                let router = this.$router;
+                let store = this.$store;
+
+                axios.post('/api/logout', store.state.user.auth)
+                    .then(response => {
+                        if (response.data.success) {
+                            // pass empty object to action for clearing userinfo in localStorage and store
+                            store.dispatch('user/updateUserInfo', {});
+                            router.push({name: 'home',});
+                        }
+                    })
+                    .catch(error => {
+                    })
+
             }
         }
     }

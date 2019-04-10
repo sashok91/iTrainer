@@ -22,11 +22,12 @@ export default {
 
     actions: {
         updateUserInfo({commit}, data) {
+            let ls = localStorage;
             if (data) {
-                localStorage.setItem('user_id', data.user_id);
-                localStorage.setItem('api_token', data.api_token);
-                localStorage.setItem('name', data.name);
-                localStorage.setItem('role', data.role);
+                data.user_id ? ls.setItem('user_id', data.user_id) : ls.removeItem('user_id');
+                data.api_token ? ls.setItem('api_token', data.api_token) : ls.removeItem('api_token');
+                data.name ? ls.setItem('name', data.name) : ls.removeItem('name');
+                data.role ? ls.setItem('role', data.role) : ls.removeItem('role');
             }
             commit('userInfo');
         },
