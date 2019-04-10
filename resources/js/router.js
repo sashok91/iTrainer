@@ -21,24 +21,40 @@ export default new Router({
             component: () => import('./layouts/BaseApp.vue'),
             children: [
                 {
-                    path: '/',
+                    path: '',
                     name: 'home',
                     component: Home,
                 },
                 {
-                    path: 'about',
-                    name: 'about',
-                    component: () => import('./pages/About.vue'),
+                    path: 'studying',
+                    name: 'studying',
+                    component: () => import('./pages/Studying.vue'),
                 },
                 {
-                    path: '/mathtrainer',
-                    name: 'mathtrainer',
-                    component: () => import('./pages/MathTrainer.vue'),
+                    path: 'view-questions',
+                    name: 'viewQuestions',
+                    component: () => import('./pages/ViewQuestions.vue'),
                 },
                 {
-                    path: '/search',
-                    name: 'search',
-                    component: () => import('./pages/Search.vue'),
+                    path: 'stats',
+                    name: 'stats',
+                    component: () => import('./pages/Stats.vue'),
+                },
+
+                {
+                    path: 'admin-comments',
+                    name: 'adminComments',
+                    component: () => import('./pages/AdminComments.vue'),
+                },
+                {
+                    path: 'admin-users',
+                    name: 'adminUsers',
+                    component: () => import('./pages/AdminUsers.vue'),
+                },
+                {
+                    path: 'admin-questions',
+                    name: 'adminQuestions',
+                    component: () => import('./pages/AdminQuestions.vue'),
                 },
             ]
         }

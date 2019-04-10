@@ -1,9 +1,7 @@
 <template>
   <div class="home">
     <v-layout align-center row>
-      <v-toolbar>
-        <v-btn>rrrr</v-btn>
-      </v-toolbar>
+      Home
     </v-layout>
 
 
