@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <v-toolbar flat app >
+        <v-toolbar flat app>
 
             <v-toolbar-side-icon @click="toggleSidebar" class="grey--text text--darken-2"></v-toolbar-side-icon>
 
@@ -10,16 +10,26 @@
 
             <v-spacer></v-spacer>
 
-            <v-toolbar-items >
-                <v-btn class="grey--text text--darken-2" flat to="/app">Home</v-btn>
+            <div v-if="!userInfo.isLoggedin">
                 <v-btn class="grey--text text--darken-2" flat to="/login">Log In</v-btn>
                 <v-btn class="grey--text text--darken-2" flat to="/registration">Sign Up</v-btn>
-            </v-toolbar-items>
+            </div>
 
-            <v-btn flat @click="onLogoutClick" class="grey--text text--darken-2">
-                <span>Log out</span>
-                <v-icon right>exit_to_app</v-icon>
-            </v-btn>
+            <v-toolbar-title v-if="userInfo.isLoggedin">
+                <span class="grey--text text--darken-1 font-weight-lighter">{{userInfo.name || ''}}</span>
+            </v-toolbar-title>
+
+            <div v-if="userInfo.isLoggedin">
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                        <v-btn flat @click="onLogoutClick" v-on="on" class="grey--text text--darken-2">
+                            <v-icon>exit_to_app</v-icon>
+                        </v-btn>
+                    </template>
+                    <span>Log out</span>
+                </v-tooltip>
+            </div>
+
 
         </v-toolbar>
 
@@ -29,16 +39,22 @@
 
 <script>
     import SideNavigation from '../components/SideNavigation.vue';
+    import {mapState} from 'vuex';
 
     export default {
         name: "Navbar",
         components: {
             SideNavigation
         },
+        computed: {
+            ...mapState({
+                userInfo: storeState => storeState.user.auth,
+                drawer: storeState => storeState.nav.drawer,
+            }),
+        },
         methods: {
             toggleSidebar() {
-                let drawer = !this.$store.state.nav.drawer;
-                this.$store.commit('nav/drawer', drawer);
+                this.$store.commit('nav/drawer', !this.drawer);
             },
 
             onLogoutClick() {
