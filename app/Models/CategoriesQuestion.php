@@ -10,41 +10,41 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class QuestionsTag
+ * Class CategoriesQuestion
  * 
  * @property int $id
  * @property int $question_id
- * @property int $tag_id
+ * @property int $category_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
  * 
+ * @property \App\Models\Category $category
  * @property \App\Models\Question $question
- * @property \App\Models\Tag $tag
  *
  * @package App\Models
  */
-class QuestionsTag extends Eloquent
+class CategoriesQuestion extends Eloquent
 {
 	use \Illuminate\Database\Eloquent\SoftDeletes;
 
 	protected $casts = [
 		'question_id' => 'int',
-		'tag_id' => 'int'
+		'category_id' => 'int'
 	];
 
 	protected $fillable = [
 		'question_id',
-		'tag_id'
+		'category_id'
 	];
+
+	public function category()
+	{
+		return $this->belongsTo(\App\Models\Category::class);
+	}
 
 	public function question()
 	{
 		return $this->belongsTo(\App\Models\Question::class);
-	}
-
-	public function tag()
-	{
-		return $this->belongsTo(\App\Models\Tag::class);
 	}
 }

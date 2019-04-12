@@ -18,6 +18,7 @@ class CreateComplaintsTable extends Migration
             $table->text('text');
             $table->unsignedBigInteger('users_question_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('users_question_id')->references('id')->on('users_questions');
         });

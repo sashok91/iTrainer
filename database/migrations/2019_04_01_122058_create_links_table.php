@@ -19,6 +19,7 @@ class CreateLinksTable extends Migration
             $table->string('text')->nullable();
             $table->unsignedBigInteger('answer_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('answer_id')->references('id')->on('answers');
         });

@@ -20,6 +20,7 @@ class CreateQuestionCommentsTable extends Migration
             $table->unsignedBigInteger('users_question_id');
             $table->unsignedBigInteger('comment_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('comment_id')->references('id')->on('question_comments');
         });

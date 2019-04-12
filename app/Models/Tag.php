@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 11 Apr 2019 13:10:33 +0000.
+ * Date: Thu, 11 Apr 2019 18:46:44 +0000.
  */
 
 namespace App\Models;
@@ -16,6 +16,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $name
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
  * 
  * @property \Illuminate\Database\Eloquent\Collection $questions
  *
@@ -23,6 +24,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Tag extends Eloquent
 {
+	use \Illuminate\Database\Eloquent\SoftDeletes;
+
 	protected $fillable = [
 		'name'
 	];
@@ -30,7 +33,7 @@ class Tag extends Eloquent
 	public function questions()
 	{
 		return $this->belongsToMany(\App\Models\Question::class, 'questions_tags')
-					->withPivot('id')
+					->withPivot('id', 'deleted_at')
 					->withTimestamps();
 	}
 }

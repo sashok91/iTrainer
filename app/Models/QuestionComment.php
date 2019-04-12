@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 11 Apr 2019 13:10:33 +0000.
+ * Date: Thu, 11 Apr 2019 18:46:44 +0000.
  */
 
 namespace App\Models;
@@ -19,6 +19,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $comment_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
  * 
  * @property \App\Models\QuestionComment $question_comment
  * @property \Illuminate\Database\Eloquent\Collection $question_comments
@@ -27,6 +28,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class QuestionComment extends Eloquent
 {
+	use \Illuminate\Database\Eloquent\SoftDeletes;
+
 	protected $casts = [
 		'users_question_id' => 'int',
 		'comment_id' => 'int'

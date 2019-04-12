@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuestionsCategoriesTable extends Migration
+class CreateCategoriesQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateQuestionsCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions_categories', function (Blueprint $table) {
+        Schema::create('categories_questions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('question_id');
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateQuestionsCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions_categories');
+        Schema::dropIfExists('categories_questions');
     }
 }

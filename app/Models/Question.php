@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 11 Apr 2019 13:10:33 +0000.
+ * Date: Thu, 11 Apr 2019 18:46:44 +0000.
  */
 
 namespace App\Models;
@@ -15,12 +15,12 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $id
  * @property string $text
  * @property string $state
- * @property int $category_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
  * 
- * @property \App\Models\Category $category
  * @property \Illuminate\Database\Eloquent\Collection $answers
+ * @property \Illuminate\Database\Eloquent\Collection $categories_questions
  * @property \Illuminate\Database\Eloquent\Collection $questions_categories
  * @property \Illuminate\Database\Eloquent\Collection $tags
  * @property \Illuminate\Database\Eloquent\Collection $users
@@ -29,24 +29,21 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Question extends Eloquent
 {
-	protected $casts = [
-		'category_id' => 'int'
-	];
+	use \Illuminate\Database\Eloquent\SoftDeletes;
 
 	protected $fillable = [
 		'text',
-		'state',
-		'category_id'
+		'state'
 	];
-
-	public function category()
-	{
-		return $this->belongsTo(\App\Models\Category::class);
-	}
 
 	public function answers()
 	{
 		return $this->hasMany(\App\Models\Answer::class);
+	}
+
+	public function categories_questions()
+	{
+		return $this->hasMany(\App\Models\CategoriesQuestion::class);
 	}
 
 	public function questions_categories()
@@ -57,14 +54,14 @@ class Question extends Eloquent
 	public function tags()
 	{
 		return $this->belongsToMany(\App\Models\Tag::class, 'questions_tags')
-					->withPivot('id')
+					->withPivot('id', 'deleted_at')
 					->withTimestamps();
 	}
 
 	public function users()
 	{
 		return $this->belongsToMany(\App\Models\User::class, 'users_questions')
-					->withPivot('id', 'complexity', 'state')
+					->withPivot('id', 'complexity', 'state', 'deleted_at')
 					->withTimestamps();
 	}
 }

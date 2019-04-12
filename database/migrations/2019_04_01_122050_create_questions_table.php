@@ -17,10 +17,8 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->text('text');
             $table->enum('state', ['draft', 'active'])->default('draft');
-            $table->unsignedBigInteger('category_id')->nullable();
             $table->timestamps();
-
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->softDeletes();
         });
     }
 
