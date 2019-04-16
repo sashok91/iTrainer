@@ -56,6 +56,16 @@ export default new Router({
                     name: 'adminQuestions',
                     component: () => import('./pages/AdminQuestions.vue'),
                 },
+                {
+                    path: 'admin-edit-question/:id',
+                    name: 'edit-question',
+                    component: () => import('./pages/AdminEditQuestion.vue')
+                },
+                {
+                    path: 'admin-add-question',
+                    name: 'admin-add-question',
+                    component: () => import('./pages/AdminAddQuestion.vue')
+                }
             ]
         }
 
