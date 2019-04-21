@@ -20,7 +20,7 @@ axios.interceptors.response.use(function (response) {
 }, function (error) {
     switch (error.response.status) {
         case 401:
-            app.state.user.dispatch('logout');
+            app.$store.dispatch('user/logout');
             break;
         case 404:
             console.log(error.response.data.message);

@@ -32,54 +32,7 @@
         name: 'AdminQuestions',
         data() {
             return {
-                questions: [
-                    {
-                        id: 1,
-                        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, nulla, sapiente? Cum eaque minima recusandae voluptate. Alias autem deserunt error et ex ipsum laboriosam',
-                        state: 'draft',
-                        tags: [
-                            {
-                                id: '1',
-                                name: 'php'
-                            },
-                            {
-                                id: '2',
-                                name: 'junior'
-                            },
-                        ]
-                    },
-                    {
-                        id: 2,
-                        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, nulla, sapiente? Cum eaque minima recusandae voluptate. Alias autem deserunt error et ex ipsum laboriosam',
-                        state: 'draft',
-                        tags: [
-                            {
-                                id: '1',
-                                name: 'php'
-                            },
-                            {
-                                id: '2',
-                                name: 'junior'
-                            },
-                        ]
-                    },
-                    {
-                        id: 3,
-                        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, nulla, sapiente? Cum eaque minima recusandae voluptate. Alias autem deserunt error et ex ipsum laboriosam',
-                        state: 'active',
-                        tags: [
-                            {
-                                id: '1',
-                                name: 'php'
-                            },
-                            {
-                                id: '2',
-                                name: 'junior'
-                            },
-                        ]
-                    }
-
-                ]
+                questions: []
             }
         },
         components: {

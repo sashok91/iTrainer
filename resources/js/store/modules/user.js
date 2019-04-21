@@ -32,7 +32,7 @@ export default {
             commit('userInfo');
         },
         logout() {
-            this.dispatch('updateUserInfo');
+            this.dispatch('user/updateUserInfo');
         }
     }
 }
