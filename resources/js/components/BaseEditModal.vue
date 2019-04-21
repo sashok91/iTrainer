@@ -41,12 +41,13 @@
             onSaveClick() {
                 if (this.$refs.form.validate()) {
                     this.show = false;
-                    this.$emit('onSave');
+                    this.$emit('save');
                 }
             },
             onCloseClick() {
                 this.show = false;
                 this.$refs.form.resetValidation();
+                this.$emit('close');
             }
         }
     }

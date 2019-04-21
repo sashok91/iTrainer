@@ -12,7 +12,7 @@ import 'vuetify/dist/vuetify.min.css';
 
 Vue.config.productionTip = false;
 
-window.app = new Vue({
+const app = new Vue({
     router,
     store,
     render: h => h(App),
@@ -21,4 +21,4 @@ window.app = new Vue({
     }
 }).$mount('#app');
 
-
+export default app;

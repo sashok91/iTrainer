@@ -38,7 +38,7 @@ class Question extends Eloquent
 
 	public function answers()
 	{
-		return $this->hasMany(\App\Models\Answer::class);
+		return $this->hasOne(\App\Models\Answer::class);
 	}
 
 	public function categories_questions()

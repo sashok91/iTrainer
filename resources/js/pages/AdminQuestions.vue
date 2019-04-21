@@ -14,7 +14,7 @@
             </v-layout>
             <v-layout>
                 <v-flex>
-                    <a-q-list :questions="questions" @editQuestion="onEditQuestionClick"></a-q-list>
+                    <a-q-list :questions="questions"></a-q-list>
                 </v-flex>
 
             </v-layout>
@@ -26,6 +26,7 @@
 <script>
     import AQFilter from '../components/AQFilter.vue';
     import AQList from '../components/AQList.vue';
+    import api from '../helpers/api.js';
 
     export default {
         name: 'AdminQuestions',
@@ -85,21 +86,16 @@
             AQFilter,
             AQList
         },
+        created() {
+            api.getQuestionsForAdmin().then((resp) => {
+                this.questions = resp.data;
+            });
+        },
         methods: {
             onAddClick() {
                 this.$router.push({
                     name: 'admin-add-question'
                 })
-            },
-            onEditQuestionClick(questionId) {
-                if (questionId) {
-                    this.$router.push({
-                        name: 'edit-question',
-                        params: {'id': questionId}
-                    });
-                } else {
-                    console.error('Question id is empty!');
-                }
             }
         }
     }
